@@ -4,9 +4,19 @@
 		<meta charset="utf-8" />
 		<link rel="icon" href="%svelte.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
 		%svelte.head%
 	</head>
 	<body>
-		<div>%svelte.body%</div>
+		<main>%svelte.body%</main>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				text-decoration: none;
+				color: black;
+			}
+		</style>
 	</body>
 </html>
