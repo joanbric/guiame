@@ -3,7 +3,7 @@ function formatNumber(number){
 }
 export default function getDateTime(){
     const now = new Date();
-    const hour = now.getHours();
+    const hour = formatNumber(now.getHours());
     const minutes = formatNumber(now.getMinutes());
 
     const year = now.getFullYear();

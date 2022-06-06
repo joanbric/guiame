@@ -31,11 +31,26 @@
 		console.log('initAutoComplete');
 		placesAutoComplete = places({
 			container: document.querySelector('#txtDestination')
+		})
+		.configure({
+			countries: ['GB'],
+			aroundLatLng: `${cur_pos[0]},${cur_pos[1]}`,
+			aroundLatLngViaIP: false,
+			aroundRadius: 15000,
 		});
+
 
 		placesAutoComplete.on('change', (e) => {
 			promiseJourneys = getJourneys(e);
 		});
+
+		placesAutoComplete.on('suggestions', (rawAnswer, query, suggestions) => {
+		  console.group('Sugerencia')
+			console.log('Raw Answer is:', rawAnswer)
+			console.log('Query is: ', query)
+			console.log('Suggestion is: ', suggestions)
+		  console.groupEnd('Sugerencia')
+		})
 	}
 </script>
 
@@ -46,7 +61,7 @@
 <Map {cur_pos} />
 <div class="controller">
 	<div class="separator">----</div>
-	<form action="getDirection" method="get">
+	<form on:submit|preventDefault="{false}" action="getDirection" method="get">
 		<input
 			type="search"
 			name="destination"
