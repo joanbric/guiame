@@ -1,6 +1,6 @@
 <script context="module">
 	/** @type {import('./__types/[id]').Load} */
-    export async function load()
+    // export async function load()
 </script>
 
 <script>

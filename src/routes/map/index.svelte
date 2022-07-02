@@ -1,98 +1,82 @@
 <script>
+	// ** Components
 	import Map from './map.svelte';
+	import FinderLocation from './finderLocation.svelte';
+	import RoutesSuggestion from './routesSuggestion.svelte';
+    import RouteLegs from "./routeLegs.svelte";
+	// ** Stores
+	import { destination } from './store.js';
+	// ** Modules
 	import getDateTime from './getDateTime';
 
-	var placesAutoComplete;
-	var cur_pos = [51.491724541481474, -0.10041028444802302];
+	const cur_pos = [51.49164814536886, -0.10065042998557304]; // By geolocalization
 	let promiseJourneys;
+    let map;
+    let selectedRoute = false;
+    let routeLegs = [];
 
-	async function getJourneys(e) {
+	async function getJourneys(dest) {
 		const { date, time } = getDateTime();
 		const cur_lat = cur_pos[0];
 		const cur_lng = cur_pos[1];
-		const dest_lat = e.suggestion.latlng.lat;
-		const dest_lng = e.suggestion.latlng.lng;
-		const mode = 'bus';
+		const dest_lat = dest[1];
+		const dest_lng = dest[0];
+		const mode = 'bus'; //mode=${mode}
 
 		const res = await fetch(
-			`https://api.tfl.gov.uk/journey/journeyResults/${cur_lat},${cur_lng}/to/${dest_lat},${dest_lng}?mode=${mode}&useMultiModalCall=true&time=${time}&date=${date}&timeIs=departing`
+			`https://api.tfl.gov.uk/journey/journeyResults/${cur_lat},${cur_lng}/to/${dest_lat},${dest_lng}?&useMultiModalCall=true&time=${time}&date=${date}&timeIs=departing`
 		);
+
 		const json_data = await res.json();
-		console.log(json_data.journeys)
+
 		if (res.ok) {
 			return json_data.journeys;
 		} else {
-			console.log(res)
+			console.log(res);
 			throw new Error(json_data);
 		}
 	}
 
-	function initAutoComplete() {
-		console.log('initAutoComplete');
-		placesAutoComplete = places({
-			container: document.querySelector('#txtDestination')
-		})
-		.configure({
-			countries: ['GB'],
-			aroundLatLng: `${cur_pos[0]},${cur_pos[1]}`,
-			aroundLatLngViaIP: false,
-			aroundRadius: 15000,
-		});
 
+    function loadRoute(event){
+        const legs = event.detail.journey.legs;
+        map.setRoute(legs);
+        selectedRoute = true
 
-		placesAutoComplete.on('change', (e) => {
-			promiseJourneys = getJourneys(e);
-		});
+        routeLegs = legs
+    }
 
-		placesAutoComplete.on('suggestions', (rawAnswer, query, suggestions) => {
-		  console.group('Sugerencia')
-			console.log('Raw Answer is:', rawAnswer)
-			console.log('Query is: ', query)
-			console.log('Suggestion is: ', suggestions)
-		  console.groupEnd('Sugerencia')
-		})
-	}
+	destination.subscribe((dest) => {
+		if (dest.center) promiseJourneys = getJourneys(dest.center);
+	});
 </script>
 
-<svelte:head>
-	<script src="https://cdn.jsdelivr.net/npm/places.js@1.19.0" on:load={initAutoComplete}></script>
-</svelte:head>
-
-<Map {cur_pos} />
+<Map {cur_pos} bind:this={map}/>
 <div class="controller">
 	<div class="separator">----</div>
-	<form on:submit|preventDefault="{false}" action="getDirection" method="get">
-		<input
-			type="search"
-			name="destination"
-			id="txtDestination"
-			placeholder="Where you want to go?"
-		/>
+	<form on:submit|preventDefault={getJourneys} action="getDirection" method="get">
+		<FinderLocation lat={cur_pos[0]} lng={cur_pos[1]} />
 	</form>
-</div>
-<div class="journeys-container">
-	<ul class="journeys">
-		{#if promiseJourneys}
-			{#await promiseJourneys}
-				<li>Buscando rutas...</li>
-			{:then journeys}
-				{#each journeys as journey}
-					<a href="##">
-						<li>Duration: {journey.duration} -- 
-						{#each journey.legs as leg}
-							{leg.instruction.summary}({leg.duration}) -
-						{/each}
+    {#if !selectedRoute}
+	<div class="journeys-container">
+		<ul class="journeys">
+			{#if promiseJourneys}
+				{#await promiseJourneys}
+					<li class="loading">Buscando rutas...</li>
+				{:then journeys}
+					{#each journeys as journey}
+						<RoutesSuggestion on:journeySelected={loadRoute} {journey} />
+					{/each}
+				{:catch err}
+					<li class="wrong">Algo salio mal</li>
+				{/await}
+			{/if}
+		</ul>
+	</div>
+    {:else}
+        <RouteLegs {routeLegs} on:goBack={() => {selectedRoute = false}}/>
+    {/if}
 
-
-					</li>
-						- Costo: {journey.fare ? journey.fare.totalCost / 100 : 0}
-					</a>
-				{/each}
-			{:catch err}
-				<li>Algo salio mal: {console.dir(err.message)}</li>
-			{/await}
-		{/if}
-	</ul>
 </div>
 
 <style>
@@ -113,7 +97,46 @@
 		cursor: row-resize;
 	}
 
-	input {
-		border: none;
+	/* LOADING */
+	li.loading {
+		position: relative;
+		list-style: none;
+		text-align: center;
+		padding: 8px 0;
+		margin: 0 auto;
+		width: fit-content;
+		background-color: transparent;
+	}
+
+	li.loading::after {
+		content: '';
+		background-color: #ec7070;
+		position: absolute;
+		bottom: 0;
+		display: block;
+		height: 4px;
+		left: 0;
+		animation: grow-bar 0.6s ease-in-out infinite alternate-reverse;
+	}
+	@keyframes grow-bar {
+		0% {
+			right: 100%;
+		}
+		50% {
+			right: 0;
+			left: 0%;
+		}
+		100% {
+			left: 100%;
+			right: 0;
+		}
+	}
+
+	/* WORNG */
+	li.wrong {
+		padding: 20px;
+		text-align: center;
+		color: red;
+		font-weight: bold;
 	}
 </style>
