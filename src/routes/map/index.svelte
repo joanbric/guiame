@@ -50,7 +50,6 @@
 		if (dest.center) promiseJourneys = getJourneys(dest.center);
 	});
 </script>
-
 <Map {cur_pos} bind:this={map}/>
 <div class="controller">
 	<div class="separator">----</div>

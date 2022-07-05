@@ -12,8 +12,8 @@
 </script>
 
 <button on:click={() => journeySelected(journey)} class="route-link">
-	<li class="route-content">
-		<span class="duration-travel">{journey.duration}min</span>
+	<div class="route-content">
+		<span class="duration-travel">{journey.duration}<br/>min</span>
 		<span class="legs-travel">
 			{#each journey.legs as leg}
 				<span class="leg">
@@ -23,7 +23,7 @@
 			{/each}
 		</span>
 		<span class="cost-travel">{journey.fare ? journey.fare.totalCost / 100 : 0}</span>
-	</li>
+	</div>
 </button>
 
 <style>
@@ -34,13 +34,13 @@
 		display: flex;
 		align-items: center;
 		margin: 10px 5px;
-		background-color: #a7a7a7;
+		background-color: inherit;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, .1);
 		border-radius: 5px;
-		padding-left: 5px;
 		border: none;
 	}
 
-	li.route-content {
+	div.route-content {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -50,6 +50,12 @@
 		padding: 5px 15px;
 		overflow: hidden;
 	}
+
+    span.duration-travel, span.cost-travel{
+        display: flex;
+        font-size: 1.15rem;
+        font-weight: 500;
+    }
 
 	span.legs-travel {
 		display: flex;
@@ -76,4 +82,6 @@
 	span.duration-leg {
 		font-size: 0.8rem;
 	}
+
+    
 </style>

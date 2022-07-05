@@ -9,7 +9,7 @@
 	let routing_path = [];
 
 	function loadMap() {
-		map = L.map('map', { center: cur_pos, zoom: 17 });
+		map = L.map('map', { center: cur_pos, zoom: 17, zoomControl: false});
 
 		L.tileLayer(
 			`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}`,
@@ -45,13 +45,16 @@
 				lineOptions: {
 					styles: [{ color: isWalking ? 'green' : 'red', dashArray: isWalking ? '10' : 'line' }]
 				},
-				show: false,
 				addWaypoints: false,
-				draggableWaypoints: false
+				draggableWaypoints: false,
+                containerClassName: 'non-display',
 			}).addTo(map);
 
+            
+           console.log("The route's plan is", route.getPlan());
+            
 			routing_path.push(route);
-
+            
 			console.log(arrival.lat, arrival.lon);
 		});
 
@@ -110,4 +113,5 @@
 		height: 45vh;
 		z-index: 1;
 	}
+  
 </style>
