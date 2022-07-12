@@ -102,12 +102,12 @@
 	ul {
 		display: none;
 		position: fixed;
+        z-index: 100;
 		background-color: white;
 	}
 	ul:hover{
 		display: block;
 	}
-
 	
 	li {
 		cursor: pointer;

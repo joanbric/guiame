@@ -3,17 +3,18 @@
 	import Map from './map.svelte';
 	import FinderLocation from './finderLocation.svelte';
 	import RoutesSuggestion from './routesSuggestion.svelte';
-    import RouteLegs from "./routeLegs.svelte";
+	import RouteLegs from './routeLegs.svelte';
 	// ** Stores
 	import { destination } from './store.js';
 	// ** Modules
 	import getDateTime from './getDateTime';
 
 	const cur_pos = [51.49164814536886, -0.10065042998557304]; // By geolocalization
+    let controller_heigth;
 	let promiseJourneys;
-    let map;
-    let selectedRoute = false;
-    let routeLegs = [];
+	let map;
+	let selectedRoute = false;
+	let routeLegs = [];
 
 	async function getJourneys(dest) {
 		const { date, time } = getDateTime();
@@ -37,55 +38,63 @@
 		}
 	}
 
+	function loadRoute(event) {
+		const legs = event.detail.journey.legs;
+		map.setRoute(legs);
+		selectedRoute = true;
 
-    function loadRoute(event){
-        const legs = event.detail.journey.legs;
-        map.setRoute(legs);
-        selectedRoute = true
-
-        routeLegs = legs
-    }
+		routeLegs = legs;
+	}
 
 	destination.subscribe((dest) => {
 		if (dest.center) promiseJourneys = getJourneys(dest.center);
 	});
 </script>
-<Map {cur_pos} bind:this={map}/>
-<div class="controller">
-	<div class="separator">----</div>
-	<form on:submit|preventDefault={getJourneys} action="getDirection" method="get">
-		<FinderLocation lat={cur_pos[0]} lng={cur_pos[1]} />
-	</form>
-    {#if !selectedRoute}
-	<div class="journeys-container">
-		<ul class="journeys">
-			{#if promiseJourneys}
-				{#await promiseJourneys}
-					<li class="loading">Buscando rutas...</li>
-				{:then journeys}
-					{#each journeys as journey}
-						<RoutesSuggestion on:journeySelected={loadRoute} {journey} />
-					{/each}
-				{:catch err}
-					<li class="wrong">Algo salio mal</li>
-				{/await}
-			{/if}
-		</ul>
-	</div>
-    {:else}
-        <RouteLegs {routeLegs} on:goBack={() => {selectedRoute = false}}/>
-    {/if}
 
+<Map {cur_pos} bind:this={map} />
+<div class="controller" style:height="calc(100vh - {controller_heigth}px)">
+	<div class="separator" draggable="true" on:click={() => console.log('Click')} on:dragstart|preventDefault={(e)=>{e.target.draggable = false}} on:drag={(e) => {controller_heigth = e.clientY; console.log(e)}} />
+	{#if !selectedRoute}
+		<form on:submit|preventDefault={getJourneys} action="getDirection" method="get">
+			<FinderLocation lat={cur_pos[0]} lng={cur_pos[1]} />
+		</form>
+		<div class="journeys-container">
+			<ul class="journeys">
+				{#if promiseJourneys}
+					{#await promiseJourneys}
+						<li class="loading">Buscando rutas...</li>
+					{:then journeys}
+						{#each journeys as journey}
+							<RoutesSuggestion on:journeySelected={loadRoute} {journey} />
+						{/each}
+					{:catch err}
+						<li class="wrong">Algo salio mal</li>
+					{/await}
+				{/if}
+			</ul>
+		</div>
+	{:else}
+		<RouteLegs
+			{routeLegs}
+			on:goBack={() => {
+				selectedRoute = false;
+			}}
+		/>
+	{/if}
 </div>
 
 <style>
 	.controller {
-		position: relative;
-		top: -10px;
+        resize: vertical;
+		position: absolute;
+		bottom: 0;
 		border-radius: 15px 15px 0 0;
 		background-color: #fff;
-		box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.15);
+		box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.25);
 		z-index: 10;
+        width: 100%;
+        min-height: 56vh;
+        max-height: 65vh;
 	}
 
 	.separator {
@@ -93,7 +102,21 @@
 		text-align: center;
 		border-bottom: 1px solid #c2c2c2;
 		margin: 5px 0;
-		cursor: row-resize;
+		/* cursor: row-resize; */
+		position: relative;
+	}
+
+	.separator::before {
+		content: '';
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+        background-color: #555;
+        width: 10%;
+        max-width: 50px;
+        height: 3px;
+        border-radius: 2px;
 	}
 
 	/* LOADING */
