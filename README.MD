@@ -1,28 +1,28 @@
 # ![Guiame App logo](static/guiame-logo.png "Guiame App")
 
-La lujosa y clasica ciudad le Londres puede ser un problema al momento de transportarse si es tu primera vez. Pero con **Guiame App** resultara ser mas sencillo la forma en al que te transportas.
+The luxurious and classic city of London can be a problem when transporting if it is your first time. But with **Guiame App** the way you transport yourself will be easier.
 
-## ¿Como funciona?
-Solo tienes que
-1. Activa tu ubicacion y compartela con la app.
-2. Indica hacia donde quieres ir.
-
-
-**Guiame app** te ayudara a: 
- - 🚏Encontrara la mejor ruta para que llegues a tu destino.
- - 📝Recibiras los detalles te tu transporte e informacion actual de tu viaje.
- - ⏰Tambien puede programar a que lugares tienes que llegar y la aplicacion te indicara cuando debes de tomar tu transporte para no llegar tarde.
+## How does it work?
+You only have to
+1. Activate your location and share it with the app.
+2. Indicate where you want to go.
 
 
-## ⚒️ Picos y Mastillos
-
-- La app es creada enteramente usando [Svelte](https://svelte.dev/), me he apoyado en backend con [Svelte Kit](https://kit.svelte.dev/).
-- Con la ayuda de [Transport for London Unified API](https://api.tfl.gov.uk/) obtengo la informacion de cada bus, tren, estacion, etc. en la ciudad de Londres.
-- [Leaflet](https://leafletjs.com/) para interactuar con el mapa y [Leaflet Routing Machine](https://www.liedman.net/leaflet-routing-machine/) trazar las rutas en el mapa.
-- [Mapbox Geocoding](https://docs.mapbox.com/api/search/geocoding/) para encontrar las coordenadas con el nombre de la ciudad o lugar.
-- Para guardar la informacion utilizo una base de datos en remota en [MongoDB](https://cloud.mongodb.com/).
-- La app esta desplegada en [Netlify](https://netlify.com/).
+**Guiame app** will help you:
+ - 🚏 It will find the best route for you to reach your destination.
+ - 📝You will receive the details of your transportation and current information about your trip.
+ - ⏰ You can also program which places you have to go to and the application will tell you when you should take your transport so as not to be late.
 
 
-## Diseño
-El [wireframe](https://www.figma.com/file/DqYARs5Fnuo5ceZbqRqNLK/guiame?node-id=109%3A421 "Wireframe de la aplicacion") fue hecho en [Figma](https://www.figma.com/). El diseño de la aplicacion es de [CityMapper](https://citymapper.com/).
+## ⚒️ Picks and Hammers
+
+- The app is created entirely using [Svelte](https://svelte.dev/), I supported it in the backend with [Svelte Kit](https://kit.svelte.dev/).
+- With the help of [Transport for London Unified API](https://api.tfl.gov.uk/) I get the information of each bus, train, station, etc. in the city of London.
+- [Leaflet](https://leafletjs.com/) to interact with the map and [Leaflet Routing Machine](https://www.liedman.net/leaflet-routing-machine/) to plot the routes on the map.
+- [Mapbox Geocoding](https://docs.mapbox.com/api/search/geocoding/) to find coordinates with city or place name.
+- To save the information I use a remote database in [MongoDB](https://cloud.mongodb.com/).
+- The app is deployed on [Netlify](https://netlify.com/).
+
+
+## Design
+The [wireframe](https://www.figma.com/file/DqYARs5Fnuo5ceZbqRqNLK/guiame?node-id=109%3A421 "Application wireframe") was made in [Figma](https://www.figma.com/). The design of the app is from [CityMapper](https://citymapper.com/).
