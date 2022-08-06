@@ -1,5 +1,5 @@
 <header>
-	<a href="/"><img class="logo-img" src="guiame-logo.png" alt="Guiame Logo" /></a>
+	<a href="/"><img class="logo-img" src="img/guiame-logo.png" alt="Guiame Logo" /></a>
 	<a class="button-style" href="/login">Login</a>
 </header>
 
@@ -75,7 +75,7 @@
     
     section:nth-child(1){
         padding-top: 12rem;
-        background-image: url('https://mms.businesswire.com/media/20160318006038/en/515153/5/DD1.jpg');
+        background-image: url('img/others/bus-and-bigben.jpg');
         background-size: cover;
         background-repeat: no-repeat;
         background-position: 75% 0;

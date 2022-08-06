@@ -1,0 +1,16 @@
+:root{
+    --clr-green: #37AB30;
+    --clr-yellow: #FFD771;
+    --clr-dark-text: #333;
+    --clr-bright-text: #fff;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Jost', Arial, Helvetica, sans-serif;
+}
+
+.non-display {
+    display: none;
+}

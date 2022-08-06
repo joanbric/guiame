@@ -13,29 +13,36 @@
 </script>
 
 <main>
-    
-    <div class="content">
-        <h1>{title}</h1>
-        <p>Sorry but this page doesn't exits.</p>
-        <a href="/">Go to home page</a>
+	<img src="img/others/lost.png" alt="A lost man" />
+	<div class="content">
+		<h1>{title}</h1>
+		<p>Sorry but this page doesn't exits.</p>
+		<a href="/">Go to home page</a>
 	</div>
-    <img src="others/lost.png" alt="A lost man" />
 </main>
 
 <style>
-    main{
-        margin: 50px 25px;
-        
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-    }
-    div{
-        text-align: right;
+	main {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+		padding: 0 20px;
+	}
 
-    }
-    h1{
-        font-size: 2.5rem;
-        margin-bottom: 20px
-    }
+	img {
+		width: 100%;
+		max-width: 675px;
+	}
+	div.content {
+		display: inline-block;
+		text-align: right;
+	}
+	h1 {
+		font-size: 2.5rem;
+		margin-bottom: 20px;
+	}
+.content a{
+    font-weight: 500;
+}
 </style>

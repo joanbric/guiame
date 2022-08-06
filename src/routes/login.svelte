@@ -1,5 +1,5 @@
 <header>
-	<a href="/"> <img src="guiame-logo.png" alt="Guiame Logo" /></a>
+	<a href="/"> <img src="img/guiame-logo.png" alt="Guiame Logo" /></a>
 </header>
 
 <main>
@@ -20,19 +20,16 @@
 
 		<p><a href="signup">But, I already have an account</a></p>
 
-        <div class="image-decoration">
-            <img src="others/man-waiting-bus-stop.png" alt="A man waiting in a bus stop" />
-        </div>
 	</form>
 </main>
 
 <style>
 	header {
-		height: 18.96vh;
 		text-align: center;
 		display: flex;
 		justify-content: center;
 		align-items: center;
+        padding: 15px;
 	}
 
     header img{
@@ -44,7 +41,7 @@
         width: 90%;
         max-width: 800px;
 		background-color: var(--clr-green);
-		box-shadow: 0 -2px 18px rgba(0, 0, 0, 0.3);
+		box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
 		border-radius: 1.2rem;
 		text-align: center;
 		padding-top: 20px;
@@ -56,8 +53,7 @@
 
 	form {
 		width: 100%;
-		margin: 15px 0;
-        padding: 0 20px;
+        padding: 15px 20px;
 	}
 
 	.input-container {
@@ -77,7 +73,7 @@
 		outline: none;
 		border: none;
 		padding: 20px 10px;
-		font-size: 1.2rem;
+		font-size: 1rem;
 
 		border-radius: 8px;
         
@@ -90,16 +86,12 @@
         padding: 15px 30px;
         margin-top: 55px;
         margin-bottom: 20px;
-        font-size: 1.2rem;
+        font-size: 1rem;
         font-weight: 700;
         border-radius: 12px;
         box-shadow: 0 0 12px rgba(0, 0, 0, .2);
     }
 
-    form img{
-        width: 100%;
-        max-width: 300px;
-        margin-top: 30px
-    }
+    
 
 </style>

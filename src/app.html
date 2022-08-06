@@ -12,29 +12,12 @@
 			rel="stylesheet"
 		/>
 
+        <link rel="stylesheet" href="%svelte.assets%/css/global.css">
+
 		%svelte.head%
 	</head>
+
 	<body>
-		<div class="main-container">%svelte.body%</div>
-
-		<style>
-            :root{
-                --clr-green: #37AB30;
-                --clr-yellow: #FFD771;
-                --clr-dark-text: #333;
-                --clr-bright-text: #fff;
-            }
-			* {
-				margin: 0;
-				padding: 0;
-				box-sizing: border-box;
-				color: black;
-				font-family: 'Jost', Arial, Helvetica, sans-serif;
-			}
-
-			.non-display {
-				display: none;
-			}
-		</style>
+		%svelte.body%
 	</body>
 </html>
