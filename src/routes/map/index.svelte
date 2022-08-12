@@ -1,11 +1,11 @@
 <script>
 	// ** Components
-	import Map from './map.svelte';
+	import Map from '../components/map.svelte';
 	import FinderLocation from './finderLocation.svelte';
 	import RoutesSuggestion from './routesSuggestion.svelte';
 	import RouteLegs from './routeLegs.svelte';
 	// ** Stores
-	import { destination } from './store.js';
+	import { destination } from '../../js/store.js';
 	// ** Modules
 	import getDateTime from './getDateTime';
 
@@ -52,8 +52,7 @@
 </script>
 
 <Map {cur_pos} bind:this={map} />
-<div class="controller" style:height="calc(100vh - {controller_heigth}px)">
-	<div class="separator" draggable="true" on:click={() => console.log('Click')} on:dragstart|preventDefault={(e)=>{e.target.draggable = false}} on:drag={(e) => {controller_heigth = e.clientY; console.log(e)}} />
+<div class="app-main-container">
 	{#if !selectedRoute}
 		<form on:submit|preventDefault={getJourneys} action="getDirection" method="get">
 			<FinderLocation lat={cur_pos[0]} lng={cur_pos[1]} />
@@ -84,41 +83,7 @@
 </div>
 
 <style>
-	.controller {
-        resize: vertical;
-		position: absolute;
-		bottom: 0;
-		border-radius: 15px 15px 0 0;
-		background-color: #fff;
-		box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.25);
-		z-index: 10;
-        width: 100%;
-        min-height: 56vh;
-        max-height: 65vh;
-	}
-
-	.separator {
-		height: 25px;
-		text-align: center;
-		border-bottom: 1px solid #c2c2c2;
-		margin: 5px 0;
-		/* cursor: row-resize; */
-		position: relative;
-	}
-
-	.separator::before {
-		content: '';
-		position: absolute;
-		left: 50%;
-		top: 50%;
-		transform: translate(-50%, -50%);
-        background-color: #555;
-        width: 10%;
-        max-width: 50px;
-        height: 3px;
-        border-radius: 2px;
-	}
-
+	
 	/* LOADING */
 	li.loading {
 		position: relative;

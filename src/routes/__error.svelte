@@ -41,6 +41,7 @@
 	h1 {
 		font-size: 2.5rem;
 		margin-bottom: 20px;
+        max-width: 20ch;
 	}
 .content a{
     font-weight: 500;

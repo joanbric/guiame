@@ -1,6 +1,6 @@
 <header>
 	<a href="/"><img class="logo-img" src="img/guiame-logo.png" alt="Guiame Logo" /></a>
-	<a class="button-style" href="/login">Login</a>
+	<a class="btn-primary anima-jumping" href="/login">Login</a>
 </header>
 
 <main>
@@ -32,40 +32,6 @@
 	.logo-img {
 		max-width: 12.5rem;
 	}
-
-	a.button-style {
-		background-color: yellow;
-		padding: 10px 15px;
-		border-radius: 8px;
-		font-weight: 500;
-		max-height: min-content;
-		box-shadow: 0 2px 12px #00000055;
-		animation: jumping 6s ease-in-out infinite 2s;
-        text-decoration: none;
-	}
-
-	a.button-style:hover {
-		transform: scale(1.3);
-		transition: transform 0.3s ease-in;
-		animation: none;
-	}
-
-	@keyframes jumping {
-		from,
-		10%,
-		20%,
-		to {
-			transform: scale(1);
-			box-shadow: 0 2px 12px #00000055;
-		}
-
-		5%,
-		15% {
-			transform: scale(1.1);
-			box-shadow: 0 2px 20px #00000066;
-		}
-	}
-	/* Main content section */
 
 	section {
 		height: 100vh;

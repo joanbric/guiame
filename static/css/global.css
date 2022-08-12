@@ -1,16 +1,125 @@
-:root{
-    --clr-green: #37AB30;
-    --clr-yellow: #FFD771;
-    --clr-dark-text: #333;
-    --clr-bright-text: #fff;
+:root {
+	--clr-green: #37ab30;
+	--clr-yellow: #ffd771;
+	--clr-blue: #417293;
+	--clr-dark-text: #333;
+	--clr-bright-text: #fff;
 }
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Jost', Arial, Helvetica, sans-serif;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Jost', Arial, Helvetica, sans-serif;
 }
 
 .non-display {
-    display: none;
+	display: none;
+}
+
+.btn-primary {
+	max-height: min-content;
+	text-decoration: none;
+
+	background-color: var(--clr-yellow);
+	color: var(--clr-dark-text);
+	border: none;
+	padding: 15px 30px;
+	font-size: 1rem;
+	font-weight: 700;
+	border-radius: 12px;
+	box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+}
+.anima-jumping {
+	animation: jumping 6s ease-in-out infinite 2s;
+}
+.anima-jumping:hover {
+	transition: transform 0.1s ease-out;
+	transform: scale(1.2);
+	animation: none;
+}
+
+@keyframes jumping {
+	from,
+	10%,
+	20%,
+	to {
+		transform: scale(1);
+		box-shadow: 0 2px 12px #00000055;
+	}
+
+	5%,
+	15% {
+		transform: scale(1.1);
+		box-shadow: 0 2px 20px #00000066;
+	}
+}
+
+html::-webkit-scrollbar{
+    width: 0;
+}
+
+.main-container {
+	padding-top: 0vh; /*before 23vh and before 35vh */
+	height: 150vh; /* 100 + 35 top + 15 bottom */
+	overflow: hidden;
+}
+
+
+div#map{
+    max-height: 80vh;
+    min-height: 30vh;
+}
+
+/* Application */
+
+.app-main-container {
+
+	width: 100%;
+	height: 55vh;
+	min-height: 20vh;
+	max-height: 70vh;
+	padding: 0 10px;
+
+	background-color: var(--clr-blue);
+
+	border-radius: 15px 15px 0 0;
+	box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.25);
+	z-index: 100;
+}
+
+.main-controls {
+	width: 90%;
+	max-width: 600px;
+	background-color: white;
+
+	border-radius: 12px;
+	margin: 0 auto;
+
+	transform: translateY(-50%);
+	display: flex;
+	flex-wrap: wrap;
+
+	overflow: hidden;
+	box-shadow: inherit;
+}
+
+.main-controls__control:nth-child(1) {
+	width: 100%;
+}
+.main-controls__control:nth-child(2) {
+	width: 50%;
+}
+.main-controls__control:nth-child(3) {
+	flex-grow: 1;
+}
+.main-controls__control:nth-child(4) {
+	flex-grow: 1;
+}
+.main-controls__control:nth-child(5) {
+	flex-grow: 1;
+}
+
+a.non-decoration {
+	text-decoration: none;
+	color: inherit;
 }

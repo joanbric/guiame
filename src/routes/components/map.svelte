@@ -1,5 +1,5 @@
 <script>
-	import { destination } from './store';
+	import { destination } from '../../js/store';
 	import curr_locat_icon from '$lib/assets/curr_locat_icon.png';
 	import { session } from '$app/stores';
 	export let cur_pos;
@@ -9,7 +9,7 @@
 	let routing_path = [];
 
 	function loadMap() {
-		map = L.map('map', { center: cur_pos, zoom: 17, zoomControl: false});
+		map = L.map('map', { center: cur_pos, zoom: 17, zoomControl: false });
 
 		L.tileLayer(
 			`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}`,
@@ -47,14 +47,13 @@
 				},
 				addWaypoints: false,
 				draggableWaypoints: false,
-                containerClassName: 'non-display',
+				containerClassName: 'non-display'
 			}).addTo(map);
 
-            
-           console.log("The route's plan is", route.getPlan());
-            
+			console.log("The route's plan is", route.getPlan());
+
 			routing_path.push(route);
-            
+
 			console.log(arrival.lat, arrival.lon);
 		});
 
@@ -101,17 +100,16 @@
 		src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
 	<!-- ^^^ Routing Machine ^^^ -->
 </svelte:head>
+
 <div id="map" />
 
 <!-- *** Styles *** -->
 <style>
 	div#map {
-		position: sticky !important;
 		top: 0;
 		margin: 0;
 		padding: 0;
 		height: 45vh;
-		z-index: 1;
+		z-index: 0;
 	}
-  
 </style>

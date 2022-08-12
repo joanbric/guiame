@@ -1,4 +1,3 @@
-
 <header>
 	<a href="/"><img class="app-logo" src="img/guiame-logo.png" alt="Guiame app logo" /></a>
 </header>
@@ -19,7 +18,7 @@
 			<input type="password" name="pass" id="txtPass" />
 		</div>
 
-		<button type="submit">Sign Up</button>
+		<button class="btn-primary" type="submit">Sign Up</button>
 	</form>
 
 	<p>Do you already have an account? So <a href="/login">Login</a></p>
@@ -52,7 +51,7 @@
 
 	.input-container {
 		width: 100%;
-        max-width: 575px;
+		max-width: 575px;
 		display: flex;
 		flex-direction: column;
 		align-items: start;
@@ -60,35 +59,27 @@
 		margin: 10px auto;
 	}
 
-    input{
-        box-sizing: border-box;
+	input {
+		box-sizing: border-box;
 		display: block;
 		width: 100%;
 		height: 2rem;
 
-        background-color: #E9E9E9;
-		
+		background-color: #e9e9e9;
+
 		outline: none;
 		border: none;
 		padding: 20px 10px;
 		font-size: 1rem;
 
 		border-radius: 8px;
-    }
-    button{
-        background-color: var(--clr-yellow);
-        color: var(--clr-dark-text);
-        border: none;
-        padding: 15px 30px;
-        margin-top: 55px;
-        margin-bottom: 20px;
-        font-size: 1rem;
-        font-weight: 700;
-        border-radius: 12px;
-        box-shadow: 0 0 12px rgba(0, 0, 0, .2);
-    }
+	}
+	button {
+		margin-top: 55px;
+		margin-bottom: 20px;
+	}
 
-    a{
-        font-weight: 500;
-    }
+	a {
+		font-weight: 500;
+	}
 </style>

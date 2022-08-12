@@ -2,7 +2,7 @@
 	export let lat = 1;
 	export let lng = 1;
 
-	import { destination } from './store';
+	import { destination } from '../../js/store';
 
 	let suggestions = [];
 	let selected_place = '';
