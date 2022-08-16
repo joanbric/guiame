@@ -2,14 +2,19 @@
 	--clr-green: #37ab30;
 	--clr-yellow: #ffd771;
 	--clr-blue: #417293;
+    --clr-grey: #F8F8F8;
+    --clr-grey-border: #dddddd;
 	--clr-dark-text: #333;
 	--clr-bright-text: #fff;
+    --clr-blue-text: #3A749A;
+    --clr-red: #E72315;
 }
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 	font-family: 'Jost', Arial, Helvetica, sans-serif;
+    list-style: none;
 }
 
 .non-display {
@@ -54,8 +59,12 @@
 	}
 }
 
-html::-webkit-scrollbar{
-    width: 0;
+.subtext{
+    font-size: .8rem;
+}
+
+html::-webkit-scrollbar {
+	width: 0;
 }
 
 .main-container {
@@ -64,22 +73,28 @@ html::-webkit-scrollbar{
 	overflow: hidden;
 }
 
-
-div#map{
-    max-height: 80vh;
-    min-height: 30vh;
+div#map {
+	max-height: 80vh;
+	min-height: 30vh;
 }
 
 /* Application */
 
 .app-main-container {
-
 	width: 100%;
 	height: 55vh;
 	min-height: 20vh;
 	max-height: 70vh;
 	padding: 0 10px;
 
+    /* This section overwrite above 
+    because the move not is good*/
+	height: max-content;
+	min-height: 55vh;
+    max-height: none;
+	padding-bottom: 15px;
+
+    
 	background-color: var(--clr-blue);
 
 	border-radius: 15px 15px 0 0;
