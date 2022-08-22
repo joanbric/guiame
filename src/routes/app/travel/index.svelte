@@ -1,15 +1,21 @@
 <script>
 	import Map from '../../components/map.svelte';
+    import ModalScheduleTrip from '../../components/modal_schedule-trip.svelte'
 	let cur_pos = [51.49164814536886, -0.10065042998557304];
     let stops_hidden = true;
+    let showModal = false;
+
 </script>
+{#if showModal}
+    <ModalScheduleTrip on:closeModal={() => {showModal=false}}/>
+{/if}
 
 <div class="overmap-controls">
 	<button class="overmap-control overmap-small-btn btn-back"><svg class="control__icon" width="20" height="25" viewBox="0 0 20 25" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M14.1387 4.46473C14.9294 3.68207 14.9294 2.40459 14.1387 1.62193L14.0351 1.51938C13.2557 0.747915 12.0005 0.747916 11.2211 1.51938L1.43597 11.2053C0.645285 11.9879 0.645285 13.2654 1.43597 14.0481L11.2211 23.7339C12.0005 24.5054 13.2557 24.5054 14.0351 23.7339L14.1387 23.6314C14.9294 22.8487 14.9294 21.5713 14.1387 20.7886L7.32908 14.0481C6.5384 13.2654 6.5384 11.9879 7.32908 11.2053L14.1387 4.46473Z" fill="#686B6F"/>
         </svg>
         </button>
-	<button class="overmap-control overmap-small-btn btn-add-schedule"><svg class="control__icon" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<button class="overmap-control overmap-small-btn btn-add-schedule" on:click={() => {showModal = true}}><svg class="control__icon" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0_109_1037)">
         <path d="M24.5481 1.92116C24.2563 1.62913 23.869 1.45364 23.4576 1.45364H1.54237C1.131 1.45364 0.743744 1.62913 0.451924 1.92116C0.160103 2.21312 -0.000348999 2.60785 5.69987e-07 3.01929L0.0160108 21.9912C0.0167799 22.8417 0.709346 23.5464 1.55992 23.5464H23.44C24.2907 23.5464 24.9832 22.8454 24.9838 21.9949L24.9999 3.02391C25.0003 2.6124 24.8399 2.21312 24.5481 1.92116ZM22.6761 21.0944C22.6761 21.1744 22.6113 21.2392 22.5313 21.2392H2.47607C2.39602 21.2392 2.33121 21.1744 2.33121 21.0944V8.10042C2.33121 8.02044 2.39609 7.95563 2.47607 7.95563H22.5312C22.6113 7.95563 22.6761 8.02044 22.6761 8.10042V21.0944H22.6761Z" fill="black"/>
         <path d="M4.98792 13.7585H7.29507C7.8734 13.7585 8.34378 13.288 8.34378 12.7098V10.8221C8.34378 10.2438 7.8734 9.77339 7.29507 9.77339H4.98792C4.40966 9.77339 3.93921 10.2438 3.93921 10.8221V12.7098C3.93921 13.288 4.40959 13.7585 4.98792 13.7585Z" fill="black"/>
@@ -31,7 +37,7 @@
             </svg>
             </button>
 </div>
-<Map class="map" {cur_pos} />
+<Map {cur_pos} />
 
 <main class="app-main-container">
     <button class="btn-go overmap-control">Go <img src="/img/icon-buttons/rocket.svg" alt="Rocket icon"></button>

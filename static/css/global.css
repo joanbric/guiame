@@ -1,20 +1,26 @@
 :root {
+	/* Colors */
 	--clr-green: #37ab30;
 	--clr-yellow: #ffd771;
 	--clr-blue: #417293;
-    --clr-grey: #F8F8F8;
-    --clr-grey-border: #dddddd;
+	--clr-grey: #f8f8f8;
+	--clr-red: #e72315;
+
+	--clr-grey-border: #dddddd;
+
 	--clr-dark-text: #333;
 	--clr-bright-text: #fff;
-    --clr-blue-text: #3A749A;
-    --clr-red: #E72315;
+	--clr-blue-text: #3a749a;
+	--clr-grey-text: #686868;
+
+	--clr-grey-input: #dfdfdf;
 }
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 	font-family: 'Jost', Arial, Helvetica, sans-serif;
-    list-style: none;
+	list-style: none;
 }
 
 .non-display {
@@ -59,8 +65,33 @@
 	}
 }
 
-.subtext{
-    font-size: .8rem;
+.subtext {
+	font-size: 0.8rem;
+}
+
+.simple-btn {
+	background: none;
+	border: none;
+	outline: none;
+	font-weight: 500;
+	padding: 3px;
+}
+
+.simple-btn-cancel {
+	color: var(--clr-red);
+	font-size: 0.9rem;
+}
+.simple-btn-accept {
+	color: var(--clr-blue);
+	font-size: 1.2rem;
+}
+
+.unselectable-text {
+	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-ms-user-select: none;
 }
 
 html::-webkit-scrollbar {
@@ -87,14 +118,13 @@ div#map {
 	max-height: 70vh;
 	padding: 0 10px;
 
-    /* This section overwrite above 
+	/* This section overwrite above 
     because the move not is good*/
 	height: max-content;
 	min-height: 55vh;
-    max-height: none;
+	max-height: none;
 	padding-bottom: 15px;
 
-    
 	background-color: var(--clr-blue);
 
 	border-radius: 15px 15px 0 0;
