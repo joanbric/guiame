@@ -1,3 +1,20 @@
+<script>
+    
+	export let status;
+    export let message;
+
+    function checkStatus(){
+        if(status == 201) window.location.href = '/app'
+    }
+
+</script>
+
+
+{#if status}
+<p>{status} - {message}</p>
+{/if}
+
+<svelte:window on:load={checkStatus()} />
 <header>
 	<a href="/"><img class="app-logo" src="img/guiame-logo.png" alt="Guiame app logo" /></a>
 </header>
@@ -10,8 +27,8 @@
 			<input type="text" name="name" id="txtName" />
 		</div>
 		<div class="input-container">
-			<label for="e-mail">E-mail</label>
-			<input type="email" name="e-mail" id="txtEmail" />
+			<label for="email">E-mail</label>
+			<input type="email" name="email" id="txtEmail" />
 		</div>
 		<div class="input-container">
 			<label for="pass">Password</label>

@@ -1,6 +1,10 @@
 <script context="module">
-	/** @type {import('./__types/[id]').Load} */
-    // export async function load()
+	
+    export async function load(){
+        return {
+            status: 402
+        }
+    }
 </script>
 
 <script>
