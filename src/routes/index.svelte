@@ -1,3 +1,7 @@
+<script>
+    export let message;
+    console.log(message)
+</script>
 <header>
 	<a href="/"><img class="logo-img" src="img/guiame-logo.png" alt="Guiame Logo" /></a>
 	<a class="btn-primary anima-jumping" href="/login">Login</a>

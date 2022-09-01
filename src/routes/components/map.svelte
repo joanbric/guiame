@@ -20,7 +20,7 @@
 				id: 'mapbox/streets-v11',
 				tileSize: 512,
 				zoomOffset: -1,
-				accessToken: $session.user.MAP
+				accessToken: $session.MAP_TOKEN
 			}
 		).addTo(map);
 

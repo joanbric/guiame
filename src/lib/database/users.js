@@ -20,9 +20,20 @@ export class Users {
 		this.Users = db.model('users', usersSchema);
 	}
 
-	async findByEmail(email) {
-		return this.Users.findOne({ email });
+	async findUser(email) {
+		const user = await this.Users.findOne({ email });
+		return user;
 	}
+
+	async verifyUser(email, password) {
+		return !(await this.findUser(email, password)) ? false : true;
+	}
+
+    async findByRefreshToken(refresh_token){
+        const user = await this.Users.findOne({refresh_token});
+
+        return user;
+    }
 
 	async add(name, email, password, user_id, refresh_token) {
 		const user = {
@@ -33,7 +44,7 @@ export class Users {
 			refresh_token
 		};
 		try {
-			const newUser = new this.Users({ ...user});
+			const newUser = new this.Users({ ...user });
 			await newUser.save();
 			return {
 				status: 201,

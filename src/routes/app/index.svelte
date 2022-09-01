@@ -1,4 +1,25 @@
+<script context="module">
+ 
+    export async function load({session}){
+        if(!session.authenticated)
+        return {
+            status: 302,
+            redirect: "/login"
+        }
+
+        return {
+            props:{
+                email: session.user.email,
+                name: session.user.name,
+                MAP_TOKEN: session.MAP_TOKEN,
+            }
+        }
+    }
+</script>
 <script>
+import { onMount } from 'svelte';
+
+
 	import Map from '../components/map.svelte';
 	let map;
 	let cur_pos = [51.49164814536886, -0.10065042998557304];

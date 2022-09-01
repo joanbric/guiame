@@ -1,17 +1,14 @@
 <script>
-    
 	export let status;
-    export let message;
+	export let message;
 
-    function checkStatus(){
-        if(status == 201) window.location.href = '/app'
-    }
-
+	function checkStatus() {
+		if (status == 201) window.location.href = '/app';
+	}
 </script>
 
-
 {#if status}
-<p>{status} - {message}</p>
+	<p>{status} - {message}</p>
 {/if}
 
 <svelte:window on:load={checkStatus()} />
